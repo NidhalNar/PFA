@@ -1,0 +1,92 @@
+<div class="banner">
+  <h1 class="banner-title">SCANNER</h1>
+  <h1 class="banner-title2">MIC</h1>
+
+</div>
+<div class="container">
+  <h1>  </h1>
+
+  <!-- devices -->
+  <div hidden>
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3 my-1">
+      <select #select1 (change)="action.playDevice(select1.value)" class="form-select form-select-md">
+        <option [value]="null" selected>Select device</option>
+        <option *ngFor="let c of action.devices.value; let i = index" [value]="c.deviceId" [selected]="i == action.deviceIndexActive">{{c.label}}</option>
+      </select>
+    </div>
+
+   
+
+    <div class="col-xs-12 col-md-6 col-lg-4 col-xl-3 my-1">
+      <select #select2 (change)="action.decode = select2.value" class="form-select form-select-md">
+        <option value="utf-8" [selected]="action.decode == 'utf-8'">UTF-8</option>
+        <option value="iso-8859-15" [selected]="action.decode == 'iso-8859-15'">ISO-8859-15</option>
+        <option value="windows-1252" [selected]="action.decode == 'windows-1252'">Windows-1252</option>
+        <option value="macintosh" [selected]="action.decode == 'macintosh'">Macintosh</option>
+      </select>
+    </div>
+  </div>
+
+  </div>
+  
+  <!-- ngx-scanner-qrcode -->
+  <div style="display: flex; justify-content: center; align-items: center; ">
+
+  <ngx-scanner-qrcode  style="width: 854px; height: 480px;"    #action="scanner" [config]="config" (event)="onEvent($event, action,'stop')" [hidden]="!action.isStart"></ngx-scanner-qrcode>
+  </div>
+  <br>
+
+  <!-- data  -->
+  <!-- <p class="data">{{ action.data | async }}</p> -->
+
+  <!-- loading -->
+  <p *ngIf="action.isLoading">⌛ Loading...</p>
+
+  <!-- start/stop -->
+ 
+
+  
+  <br>
+  <span >
+  <input type="text" [(ngModel)]="scannedData"   placeholder="Ecrire ou scannez le code" class="form-control mt-2" >
+  
+  <button class="btn btn-info " (click)="searchByReference()">
+    <img  src="assets/images/search2.png" width="30px"/>
+
+  </button>
+
+
+  <button class="btn" [class.btn-info]="!action.isStart" [class.btn-warning]="action.isStart" [disabled]="action.isLoading">
+    <img *ngIf="!action.isStart" (click)="handle(action, 'start')" src="assets/images/camera-on.svg" width="30px"/>
+    <img *ngIf="action.isStart" (click)="handle(action, 'stop')" src="assets/images/camera-off.svg" width="30px"/>
+  </button>
+  
+  
+</span>
+
+<br><br><br><br>
+
+<h2 *ngIf="showTable">Employee List</h2>
+
+<table class="table" *ngIf="showTable">
+  <thead>
+    <tr>
+      <th>Référence</th>
+      <th>Nom</th>
+      <th>Prenom</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of filteredEmployees">
+      <td>{{ employee.reference }}</td>
+      <td>{{ employee.nom }}</td>
+      <td>{{ employee.prenom }}</td>
+      <td>{{ employee.email }}</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+

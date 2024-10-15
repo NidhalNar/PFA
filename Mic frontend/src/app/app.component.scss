@@ -1,0 +1,48 @@
+h1,
+h5,
+p {
+  font-weight: 600;
+  word-break: break-all;
+  font-family: 'Courier New', Courier, monospace;
+}
+div {
+  text-align: center;
+  background: #fdfdfd;
+  
+  button {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    margin: 4px;
+    &disabled {
+      cursor: no-drop;
+    }
+  }
+
+  .data {
+    background: antiquewhite;
+    border-radius: 5px;
+  }
+}
+
+.banner {
+  background-color: black; /* Black background */
+  padding: 15px; /* Add some padding */
+  color: white; /* White text color */
+  display: flex; /* Flexbox for alignment */
+  justify-content: space-between; /* Distribute space between items */
+  align-items: center; /* Center vertically */
+}
+
+.banner-title {
+  margin: 0; /* Remove default margin */
+  font-size: 40px; /* Set font size for the title */
+  margin-left: 50px; /* Left margin for spacing */
+}
+
+.banner-title2 {
+  margin: 0; /* Remove default margin */
+  font-size: 40px; /* Set font size for the title */
+  margin-right: 50px; /* Right margin for spacing */
+}
+
